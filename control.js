@@ -21,26 +21,29 @@ function clicked() {
     if (current.ci / 128 == 3) {
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && diffi != diffj) {
         swap();
-        findMatch();
-        shift();
-        fillgrid();
+        magic();
       }
     } else if (current.ci / 128 == 2) {
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && diffi === diffj) {
         swap();
-        findMatch();
-        shift();
-        fillgrid();
+        magic();
       }
     } else if (current.ci / 128 == 0) {
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && sdiffj === -1) {
         swap();
-        findMatch();
-        shift();
-        fillgrid();
+        magic();
       }
     }
 
     current = null;
   }
+}
+
+function magic() {
+  do {
+    console.log("M");
+    findMatch();
+    shift();
+    fillgrid();
+  } while (verticalmatches.size > 0 || horizontalmatches.size > 0);
 }

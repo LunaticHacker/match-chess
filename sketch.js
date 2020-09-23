@@ -16,6 +16,7 @@ function setup() {
       grid[i][j] = new Cell(i * w, j * w, w, i, j);
     }
   }
+  magic();
 }
 
 function draw() {

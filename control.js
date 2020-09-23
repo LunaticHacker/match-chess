@@ -41,7 +41,6 @@ function clicked() {
 
 function magic() {
   do {
-    console.log("M");
     findMatch();
     shift();
     fillgrid();

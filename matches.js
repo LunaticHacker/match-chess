@@ -26,8 +26,12 @@ function findMatch() {
       if (hmatchcount >= 3) {
         let end = j + 1 - hmatchcount;
 
-        for (k = j; k >= end; k--) {
+        for (let k = j; k >= end; k--) {
           horizontalmatches.add(`${k}${i}`);
+        }
+        if (hmatchcount % 3 >= 2) {
+          horizontalmatches.delete(`${end}${i}`);
+          grid[end][i].ci = 4 * 128;
         }
       }
     }
@@ -55,8 +59,12 @@ function findMatch() {
       }
       if (vmatchcount >= 3) {
         let end = j + 1 - vmatchcount;
-        for (k = j; k >= end; k--) {
+        for (let k = j; k >= end; k--) {
           verticalmatches.add(`${i}${k}`);
+        }
+        if (vmatchcount % 3 >= 2) {
+          verticalmatches.delete(`${i}${end}`);
+          grid[i][end].ci = 4 * 128;
         }
       }
     }

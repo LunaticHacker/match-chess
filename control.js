@@ -26,19 +26,28 @@ function clicked() {
       return;
     }
     if (current.ci / 128 == 3) {
+      //Rook
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && diffi != diffj) {
         swap();
         magic();
       }
     } else if (current.ci / 128 == 2) {
+      //Bishop
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && diffi === diffj) {
         swap();
         magic();
       }
     } else if (current.ci / 128 == 0) {
+      //Pawn
       if ([0, 1].includes(diffi) && [0, 1].includes(diffj) && sdiffj === -1) {
         swap();
         magic();
+      }
+    } else if (current.ci / 128 == 4) {
+      //Queen
+      if (current.i == i || current.j == j || diffi == diffj) {
+        console.log(current.i, current.j);
+        magic(i, j, current.i, current.j);
       }
     }
 
@@ -46,12 +55,14 @@ function clicked() {
   }
 }
 
-async function magic() {
+async function magic(i, j, ci, cj) {
+  let q = false;
   do {
+    if (i != undefined) q = queen(i, j, ci, cj);
     busy = true;
     findMatch();
     await shift();
     await fillgrid();
-  } while (verticalmatches.size > 0 || horizontalmatches.size > 0);
+  } while (verticalmatches.size > 0 || horizontalmatches.size > 0 || q);
   busy = false;
 }

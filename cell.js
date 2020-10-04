@@ -11,7 +11,7 @@ class Cell {
     this.i = i;
     this.j = j;
     this.columns = [0, 2, 3];
-    this.rows = [4, 5, 8];
+    this.rows = [6, 5, 8];
     this.ci = floor(random(this.columns)) * 128;
     this.cj = floor(random(this.rows)) * 128;
     this.empty = false;

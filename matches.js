@@ -72,8 +72,10 @@ function findMatch() {
 
   for (let item of horizontalmatches) {
     grid[item[0]][item[1]].nullify();
+    score += 10;
   }
   for (let item of verticalmatches) {
     grid[item[0]][item[1]].nullify();
+    score += 10;
   }
 }

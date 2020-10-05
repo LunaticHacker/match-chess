@@ -3,6 +3,7 @@ function clicked() {
   let i = floor(mouseX / w);
   let j = floor(mouseY / w);
   function swap() {
+    moves--;
     let temp = { ...current };
     current.startTime = Date.now();
     grid[i][j].startTime = Date.now();
@@ -15,6 +16,7 @@ function clicked() {
     grid[i][j].ci = temp.ci;
     grid[i][j].cj = temp.cj;
   }
+  if (moves <= 0) return;
   if (current == null) {
     current = grid[i][j];
   } else {
@@ -46,7 +48,6 @@ function clicked() {
     } else if (current.ci / 128 == 4) {
       //Queen
       if (current.i == i || current.j == j || diffi == diffj) {
-        console.log(current.i, current.j);
         magic(i, j, current.i, current.j);
       }
     }

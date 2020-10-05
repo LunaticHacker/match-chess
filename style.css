@@ -1,10 +1,11 @@
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     place-content: center;
     place-items: center;
     margin: 5% auto;
     padding: 0px;
+    background-color: black;
 }
 
   .rainbow-button {
@@ -12,15 +13,22 @@ body {
     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
     border-radius:5px;
     font-size:2vw;
+    margin-bottom: 3px;
   }
   div
   {
    border: 2px solid black;
    background-color: black;
+   display: flex;
+   flex-direction: column;
+   margin-left: 5px;
   }
   p
   {
     background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);  
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
+    margin-top: 0em;
+   
   }

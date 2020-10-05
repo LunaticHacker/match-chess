@@ -13,4 +13,14 @@ body {
     border-radius:5px;
     font-size:2vw;
   }
-  
+  div
+  {
+   border: 2px solid black;
+   background-color: black;
+  }
+  p
+  {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);  
+    -webkit-background-clip: text;
+    color: transparent;
+  }

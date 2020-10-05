@@ -67,3 +67,6 @@ async function magic(i, j, ci, cj) {
   } while (verticalmatches.size > 0 || horizontalmatches.size > 0 || q);
   busy = false;
 }
+function saveScore() {
+  localStorage.setItem("highScore", score);
+}

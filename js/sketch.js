@@ -6,10 +6,12 @@ let w = 64;
 let cols = 8;
 let rows = 8;
 let chessImage;
-let moveCounter;
-let scoreCounter;
-let statsDiv;
-let restartButton;
+let moveCounter,
+  scoreCounter,
+  highscore,
+  statsDiv,
+  restartButton,
+  saveScoreButton;
 function preload() {
   chessImage = loadImage("chess.png");
 }
@@ -20,15 +22,19 @@ async function setup() {
   let board = createCanvas(cols * w, cols * w);
   moveCounter = createP(`Moves Left: ${moves}`);
   scoreCounter = createP(`Score : ${score}`);
+  highscore = createP(`HighScore : ${localStorage.getItem("highScore") || 0}`);
   restartButton = createButton("Restart");
+  saveScoreButton = createButton("Save HighScore");
   restartButton.addClass("rainbow-button");
+  saveScoreButton.addClass("rainbow-button");
   restartButton.mouseClicked(setup);
+  saveScoreButton.mouseClicked(saveScore);
   statsDiv = createDiv();
   statsDiv.child(moveCounter);
   statsDiv.child(scoreCounter);
+  statsDiv.child(highscore);
   statsDiv.child(restartButton);
-
-  statsDiv.position(width * 2, height / 2);
+  statsDiv.child(saveScoreButton);
   board.mouseClicked(clicked);
   grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
@@ -55,4 +61,5 @@ function draw() {
   }
   moveCounter.html(`Moves Left: ${moves}`);
   scoreCounter.html(`Score: ${score}`);
+  highscore.html(`HighScore : ${localStorage.getItem("highScore") || 0}`);
 }

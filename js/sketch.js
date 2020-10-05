@@ -28,7 +28,7 @@ async function setup() {
   statsDiv.child(scoreCounter);
   statsDiv.child(restartButton);
 
-  statsDiv.position(width * 2, 0);
+  statsDiv.position(width * 2, height / 2);
   board.mouseClicked(clicked);
   grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {

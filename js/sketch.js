@@ -9,17 +9,25 @@ let chessImage;
 let moveCounter;
 let scoreCounter;
 let statsDiv;
+let restartButton;
 function preload() {
   chessImage = loadImage("chess.png");
 }
 
-function setup() {
+async function setup() {
+  removeElements();
+  moves = 20;
   let board = createCanvas(cols * w, cols * w);
   moveCounter = createP(`Moves Left: ${moves}`);
   scoreCounter = createP(`Score : ${score}`);
+  restartButton = createButton("Restart");
+  restartButton.addClass("rainbow-button");
+  restartButton.mouseClicked(setup);
   statsDiv = createDiv();
   statsDiv.child(moveCounter);
   statsDiv.child(scoreCounter);
+  statsDiv.child(restartButton);
+
   statsDiv.position(width * 2, 0);
   board.mouseClicked(clicked);
   grid = make2DArray(cols, rows);
@@ -28,7 +36,7 @@ function setup() {
       grid[i][j] = new Cell(i * w, j * w, w, i, j);
     }
   }
-  magic();
+  await magic();
   score = 0;
 }
 

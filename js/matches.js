@@ -29,7 +29,7 @@ function findMatch() {
         for (let k = j; k >= end; k--) {
           horizontalmatches.add(`${k}${i}`);
         }
-        if (hmatchcount % 3 >= 2) {
+        if (hmatchcount % 3 >= 2 && moves < 20) {
           horizontalmatches.delete(`${end}${i}`);
           grid[end][i].ci = 4 * 128;
         }
@@ -62,13 +62,18 @@ function findMatch() {
         for (let k = j; k >= end; k--) {
           verticalmatches.add(`${i}${k}`);
         }
-        if (vmatchcount % 3 >= 2) {
+        if (vmatchcount % 3 >= 2 && moves < 20) {
           verticalmatches.delete(`${i}${end}`);
           grid[i][end].ci = 4 * 128;
         }
       }
     }
   }
+  let intersection = new Set();
+  if (moves < 20)
+    intersection = new Set(
+      [...horizontalmatches].filter((e) => verticalmatches.has(e))
+    );
 
   for (let item of horizontalmatches) {
     grid[item[0]][item[1]].nullify();
@@ -77,5 +82,10 @@ function findMatch() {
   for (let item of verticalmatches) {
     grid[item[0]][item[1]].nullify();
     score += 10;
+  }
+  for (let item of intersection) {
+    grid[item[0]][item[1]].ci = 128;
+    grid[item[0]][item[1]].empty = false;
+    grid[item[0]][item[1]].cj = 2 * 128;
   }
 }

@@ -39,6 +39,18 @@ function queen(i, j, ci, cj) {
   }
   return true;
 }
+
+function knight(_, ci, cj, i, j) {
+  if (grid[ci][cj].ci != 128) return undefined;
+  grid[ci][cj].nullify();
+  let color_to_destroy = grid[i][j].cj;
+  for (let x = 0; x < cols; x++) {
+    for (let y = 0; y < rows; y++) {
+      if (grid[x][y].cj == color_to_destroy) activateCombo(x, y);
+    }
+  }
+  return true;
+}
 function activateCombo(x, y) {
   grid[x][y].nullify();
   score += 10;

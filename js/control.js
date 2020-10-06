@@ -50,21 +50,28 @@ function clicked() {
       if (current.i == i || current.j == j || diffi == diffj) {
         magic(i, j, current.i, current.j);
       }
+    } else if (current.ci / 128 == 1) {
+      //Knight
+      if (abs((current.i - i) * (current.j - j)) == 2) console.log("Valid");
+      magic("Knight", current.i, current.j, i, j);
     }
 
     current = null;
   }
 }
 
-async function magic(i, j, ci, cj) {
-  let q = false;
+async function magic(i, j, ci, cj, ck) {
+  //TODO: find a better way to do this ,or document this function and decide on a better name for it.
+  let q,
+    k = false;
   do {
-    if (i != undefined) q = queen(i, j, ci, cj);
+    if (i != undefined && typeof i == "number") q = queen(i, j, ci, cj);
+    if (i != undefined && typeof i == "string") k = knight(i, j, ci, cj, ck);
     busy = true;
     findMatch();
     await shift();
     await fillgrid();
-  } while (verticalmatches.size > 0 || horizontalmatches.size > 0 || q);
+  } while (verticalmatches.size > 0 || horizontalmatches.size > 0 || q || k);
   busy = false;
 }
 function saveScore() {

@@ -75,5 +75,9 @@ async function magic(i, j, ci, cj, ck) {
   busy = false;
 }
 function saveScore() {
-  localStorage.setItem("highScore", score);
+  if (
+    !localStorage.getItem("highScore") ||
+    localStorage.getItem("highScore") < score
+  )
+    localStorage.setItem("highScore", score);
 }
